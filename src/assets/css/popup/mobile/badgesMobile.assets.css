@@ -22,7 +22,7 @@
     .shop-popup-cards
     {
         width: 80%;
-        height: 60%;
+        height: 55%;
     }
     .shop-popup-min, .shop-popup-max
     {
@@ -39,8 +39,8 @@
         gap: 5px;
     }
     .shop-popup-text-title, .shop-popup-text-desc { margin: 0; }
-    .shop-popup-button-core { align-items: center; }
-    .shop-popup-button, .shop-popup-select-option { font-size: 12px;}
+    .shop-popup-button-core { align-items: center; justify-content: space-around; }
+    .shop-popup-button, .shop-popup-select-option { font-size: 10px;}
     .shop-popup-button, .shop-popup-select { border-radius: 14px; }
 }
 @media only screen and (max-width: 1500px) and (min-width: 661px) 

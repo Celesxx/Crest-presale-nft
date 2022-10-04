@@ -28,7 +28,8 @@
 
 .navbar-logo
 { 
-  width: 10%; 
+  width: 10%;
+  height: 70%; 
 }
 
 /* navbar */
@@ -43,9 +44,16 @@
   width: 30%;
   height: 40px;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 500;
   border: 1px solid white;
   border-radius: 10px;
+}
+
+.logo-crest
+{
+  height: 100%;
+  width: auto;
+  object-fit: cover;
 }
 
 .navbar-option
@@ -169,7 +177,7 @@
 .button
 {
   font-style: normal;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 19px;
 }
 
@@ -177,12 +185,12 @@
 
 .market-button
 { 
-  height: 40%;
-  width: 50%;
-  border: 1px solid white !important;
-  border-radius: 22px !important;
+  border: 1px solid #fff!important;
+  border-radius: 10px!important;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 500;
+  height: 40px;
+  width: 50%;
 }
 
 .dapp-button
@@ -207,7 +215,12 @@
 }
  
 
-
+.button-market-title
+{
+  margin: 0;
+  font-weight: 500;
+}
+ 
 
 
 

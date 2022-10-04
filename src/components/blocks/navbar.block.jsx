@@ -202,7 +202,7 @@ class Navbar extends React.Component
 
             <div className="navbar-button flex row">
               <div className="navbar-button-core flex row">
-                <button className="button market-button flex row center"> <p>{ Language[this.state.language].navbar.buyButton }</p> </button>
+                <button className="button market-button flex row center"> <p className='navbar-address'>{ Language[this.state.language].navbar.buyButton }</p> </button>
                 {
                   this.state.address !== "" 
                   ?<div className="navbar-address-core flex row center"><p className='navbar-address'>{ this.state.address.substr(0, 6) + '...' +  this.state.address.substr( this.state.address.length - 6,  this.state.address.length)  }</p></div>
