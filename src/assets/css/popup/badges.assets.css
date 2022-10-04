@@ -1,0 +1,248 @@
+
+.popup-overlay
+{
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.popup-content
+{
+    height: 50%;
+    /* width: 40%; */
+    aspect-ratio: 9/6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black !important;
+    border: 0;
+    border-right: 3px solid rgb(0, 133, 255) !important;
+    border-left: 3px solid rgba(255, 26, 136, 0.8) !important;
+    background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF) !important;
+    background-size: 100% 2px !important;
+    background-position: 0 0, 0 100% !important;
+    background-repeat: no-repeat !important;
+    border-radius: 68px !important;
+    color: white;
+    font-family: "Infos-Regular";
+    -webkit-animation: scale-up-center  0.25s cubic-bezier(0.390, 0.575, 1, 1.000) both;
+    animation: scale-up-center  0.25s cubic-bezier(0.390, 0.575, 1, 1.000) both;
+}
+
+
+.shop-popup-base
+{
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.shop-popup-close
+{
+    position: absolute;
+    border: 0;
+    top: 5%;
+    right: 0.1%;
+    height: 10%;
+    width: 10%;
+    font-size: 40px;
+}
+
+.shop-popup-items
+{
+    height: 65%;
+    width: 40%;
+    background: black;
+    border: 0;
+    border-right: 1px solid rgb(0, 133, 255);
+    border-left: 1px solid rgba(255, 26, 136, 0.8);
+    background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF);
+    background-size: 100% 0.8px;
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+    border-radius: 22px;
+}
+
+.shop-popup-cards
+{
+    width: 43%;
+    height: 80%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-popup-title, .shop-popup-count-text
+{
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.shop-popup-count-core
+{
+    gap: 35px;
+    height: 15%;
+    width: 100%;
+}
+
+.shop-popup-min, .shop-popup-max
+{
+    width: 13%;
+    height: 70%;
+    border: 0;
+    border-right: 1px solid rgb(0, 133, 255);
+    border-left: 1px solid rgba(255, 26, 136, 0.8);
+    background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF);
+    background-size: 100% 0px;
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+    border-radius: 68px;
+}
+
+.shop-popup-info-core
+{
+    justify-content: space-between;
+    width: 100%;
+    height: 50%;
+}
+
+.shop-popup-info-title
+{
+    text-align: start;
+    font-size: 17px;
+    font-weight: 500;
+    justify-content: space-around;
+}
+
+.shop-popup-info-desc
+{
+    text-align: end;
+    font-size: 17px;
+    font-weight: 500;
+    justify-content: space-around;
+}
+
+.shop-popup-text-title, .shop-popup-text-desc
+{ 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.shop-popup-button-core
+{
+    height: 15%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.shop-popup-button, .shop-popup-select
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 35%;
+    height: 70%;
+    background: black;
+    border: 0;
+    border-right: 1px solid rgb(0, 133, 255) !important;
+    border-left: 1px solid rgba(255, 26, 136, 0.8) !important;
+    background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF) !important;
+    background-size: 100% 0.8px !important;
+    background-position: 0 0, 0 100% !important;
+    background-repeat: no-repeat !important;
+    border-radius: 22px !important;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.shop-video-popup
+{
+    height: 100%;
+    width: 100%;
+    border-radius: 22px;
+}
+
+
+.shop-popup-select-option 
+{
+    padding: 0 30px 0 10px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    visibility: hidden;
+    order: 1;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  
+  .shop-popup-select:focus .shop-popup-select-option 
+  {
+    visibility: visible;
+    position:relative;
+    pointer-events:all;
+  }
+
+  .shop-popup-select:focus
+  {
+    height: 120%;
+  }
+  
+  .shop-popup-select-input 
+  {
+    opacity:0;
+    position:absolute;
+    left:-99999px;
+  }
+  
+  .shop-popup-select-input:checked + label 
+  {
+    position:relative;
+    order: -1;
+    visibility: visible;
+  }
+  
+  .shop-popup-select-input:checked + label:after 
+  {
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    position:absolute;
+    right:10px;
+    top:calc(50% - 2.5px);
+    pointer-events:none;
+    z-index:3;
+  }
+  
+  .shop-popup-select-input:checked + label:before 
+  {
+    position:absolute;
+    right:0;
+    height: 40px;
+    width: 40px;
+    content: '';
+  }
+
+  .navbar-select-link
+  {
+    position: relative;
+    z-index: 10;
+  }

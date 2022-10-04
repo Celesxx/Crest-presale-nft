@@ -1,0 +1,158 @@
+@media only screen and (max-width: 660px) 
+{
+    .home { overflow-y: scroll; height: 200vh; }
+    .home-base 
+    { 
+        width: 100%;
+        justify-content: space-around;
+        height: 95%;
+    }
+    .home-head-core 
+    { 
+        flex-wrap: wrap;
+        width: 100%;
+        height: 15%;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .home-head-title-core, .home-head-time-core, .home-head-badges-core, .home-head-wallet-core
+    {
+        height: 40%;
+        width: 45%;
+        gap: 5px;
+    }
+
+    .home-head-separator 
+    {
+        height: 30%;
+        width: 2px;
+    }
+    
+    .home-head-title, .home-head-discount, .home-head-titme-title, .home-head-badges-title, .home-head-wallet-title 
+    {
+        font-size: 18px;
+    }
+    .home-head-start, .home-head-end { font-size: 12px; }
+    .home-head-timer { height: 20%; order: 3; }
+    .home-head-title-timer { font-size: 32px; }
+
+    .home-content-core
+    {
+        justify-content: center;
+        align-content: space-around;
+        flex-wrap: wrap;
+        height: 85%;
+    }
+
+    .home-personnal-card-core 
+    {
+        height: 25%;
+        width: 80%;
+        gap: 15px;
+    }
+
+    .home-badges-video
+    {
+        height: 45%;
+        width: 40%;
+    }
+
+    .home-personnal-bar-outer{ height: 10px;}
+    
+    .home-personnal-button-core { height: 10%; width: 80%; }
+    .home-personnal-button
+    {
+        width: 50%;
+        font-size: 14px;
+    }
+    .home-personnal-bar-core 
+    {
+        height: 10%;
+        width: 80%;
+        gap: 5px;
+    }
+}
+@media only screen and (max-width: 1500px) and (min-width: 661px) 
+{
+    .home { overflow-y: scroll; height: 150vh; }
+    .home-base 
+    { 
+        width: 100%;
+        justify-content: space-around;
+        height: 90%;
+    }
+    .home-head-core 
+    { 
+        flex-wrap: wrap;
+        width: 100%;
+        height: 15%;
+        justify-content: center;
+        align-items: center;
+        align-content: space-around;
+    }
+
+    .home-head-title-core, .home-head-time-core, .home-head-badges-core, .home-head-wallet-core
+    {
+        height: 70%;
+        width: 45%;
+        gap: 5px;
+    }
+
+    .home-head-separator 
+    {
+        height: 30%;
+        width: 2px;
+    }
+    
+    .home-head-title, .home-head-discount, .home-head-titme-title, .home-head-badges-title, .home-head-wallet-title 
+    {
+        font-size: 18px;
+    }
+    .home-head-start, .home-head-end { font-size: 12px; }
+    .home-head-timer { height: 20%; order: 3; }
+    .home-head-title-timer { font-size: 32px; }
+
+    .home-content-core
+    {
+        justify-content: center;
+        align-content: space-around;
+        flex-wrap: wrap;
+        height: 85%;
+    }
+
+    .home-personnal-card-core 
+    {
+        height: 45%;
+        width: 35%;
+    }
+
+    .home-badges-video
+    {
+        height: 175px;
+        width: 175px;
+    }
+
+    .home-personnal-bar-outer{ height: 10px;}
+    
+    .home-personnal-button-core { height: 15%; width: 60%; }
+    .home-personnal-button
+    {
+        width: 50%;
+        font-size: 14px;
+    }
+    .home-personnal-bar-core {
+        height: 10%;
+        width: 80%;
+        gap: 5px;
+    }
+}
+@media only screen and (max-width: 2560px) and (min-width: 1921px)
+{
+    .home-badges-video
+    {
+        height: 40%;
+        width: 40%;
+    }
+}

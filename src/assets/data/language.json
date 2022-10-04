@@ -1,0 +1,87 @@
+{
+    "en":
+    {
+        "home":
+        {
+            "headTitleP1": "Presale",
+            "headTitleP2": "Badges",
+            "headDiscount": "Discount",
+            "headTimeTitle": "Remaining time",
+            "headTimeDesc": "Before end of presale",
+            "headWalletTitle": "My badges",
+            "headWalletDesc": "balance",
+            "barGlobalTitle": "Global",
+            "barPersonnalTitle": "User"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "Link",
+                "website": "Website",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "language"
+            },
+            "buyButton": "Buy/Sell $CREST"
+        },
+
+        "buyPopup":
+        {
+            "cost": "Cost",
+            "remaining": "Remaining",
+            "lifetimeValue": "days",
+            "approve": "approve",
+            "buy": "buy"
+        }
+       
+    },
+    
+
+    "fr":
+    {
+        "home":
+        {
+            "headTitleP1": "Presale",
+            "headTitleP2": "Badges",
+            "headDiscount": "Réduction",
+            "headTimeTitle": "Temps restant",
+            "headTimeDesc": "Avant la fin de la presale",
+            "headWalletTitle": "Mes badges",
+            "headWalletDesc": "balance",
+            "barGlobalTitle": "Globale",
+            "barPersonnalTitle": "Utilisateur"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "Lien",
+                "website": "Website",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "langue"
+            },
+            "buyButton": "Achat/Vente $CREST"
+        },
+
+        "buyPopup":
+        {
+            "cost": "Prix",
+            "remaining": "Restant",
+            "lifetimeValue": "jours",
+            "approve": "Approuver",
+            "buy": "Acheter"
+        }
+    }
+}
