@@ -44,8 +44,6 @@ class LoadingData extends React.Component
 
     async UNSAFE_componentWillMount() 
     {
-        console.log("test")
-        console.log(document.querySelectorAll('.home'))
         if (window.ethereum) 
         {
             this.state.isMetamaskSupported = true

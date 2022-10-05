@@ -56,12 +56,27 @@ class Shop extends React.Component
       allowanceToken: this.props.allowanceToken,
       allowanceStable: this.props.allowanceStable,
       width: window.innerWidth,
+      isMobile: false,
     };
+    this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this)
   }
 
-  UNSAFE_componentWillMount() { window.addEventListener('resize', this.handleWindowSizeChange); }
+  UNSAFE_componentWillMount() 
+  { 
+    window.addEventListener('resize', this.handleWindowSizeChange); 
+    this.state.width = document.documentElement.clientWidth
+    if(this.state.width <= 1500) this.state.isMobile = true
+    else this.state.isMobile = false
+    this.forceUpdate()
+  }
   componentWillUnmount() { window.removeEventListener('resize', this.handleWindowSizeChange); }
-  handleWindowSizeChange = () => { this.state.width = window.innerWidth };
+  handleWindowSizeChange(event) 
+  { 
+    this.state.width = document.documentElement.clientWidth
+    if(this.state.width <= 1500) this.state.isMobile = true
+    else this.state.isMobile = false
+    this.forceUpdate()
+  }
 
   componentDidMount()
   {
@@ -144,7 +159,6 @@ class Shop extends React.Component
 
     render()
     {
-      const isMobile = this.state.width <= 1500;
       const contractHelper = new ContractHelper()
       return (
         
@@ -169,13 +183,13 @@ class Shop extends React.Component
             <div className='home-head-separator'></div>
             
             <div className='home-head-time-core home-head-timer flex column center'>
-              { isMobile != true && <h1 className='home-head-time-title no-margin no-padding'>{Language[this.state.language].home.headTimeTitle}</h1> }
-              { isMobile != true && <h2 className='home-head-time-desc no-margin no-padding'>{Language[this.state.language].home.headTimeDesc}</h2> }
+              { this.state.isMobile != true && <h1 className='home-head-time-title no-margin no-padding'>{Language[this.state.language].home.headTimeTitle}</h1> }
+              { this.state.isMobile != true && <h2 className='home-head-time-desc no-margin no-padding'>{Language[this.state.language].home.headTimeDesc}</h2> }
               <h1 className='home-head-time-nbr home-head-title-timer no-margin no-padding'>3:13:40</h1>
             </div>
 
 
-            { isMobile != true && <div className='home-head-separator'></div> }
+            { this.state.isMobile != true && <div className='home-head-separator'></div> }
 
             <div className='home-head-wallet-core flex column center'>
                 <h1 className='home-head-wallet-title no-margin no-padding'>{Language[this.state.language].home.headWalletTitle}</h1>

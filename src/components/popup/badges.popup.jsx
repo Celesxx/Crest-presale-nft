@@ -86,7 +86,6 @@ class BadgesPopup extends React.Component
     handleChange(event)
     {
         let target = event.target
-        console.log(target.id)
         this.state.erc20Selected = target.id
         this.forceUpdate()
     }

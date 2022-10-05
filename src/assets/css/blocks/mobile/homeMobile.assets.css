@@ -32,12 +32,12 @@
     
     .home-head-title, .home-head-discount, .home-head-titme-title, .home-head-badges-title, .home-head-wallet-title 
     {
-        font-size: 18px;
+        font-size: 14px;
     }
     .home-head-start, .home-head-end { font-size: 12px; }
     .home-head-timer { height: 20%; order: 3; }
     .home-head-title-timer { font-size: 32px; }
-
+    .home-head-wallet-desc { font-size: 12px;}
     .home-content-core
     {
         justify-content: center;
@@ -55,7 +55,11 @@
 
     .home-badges-video
     {
-        height: 45%;
+        max-height: 150px;
+        min-height: 100px;
+        height: 40%;
+        max-width: 150px;
+        min-width: 100px;
         width: 40%;
     }
 

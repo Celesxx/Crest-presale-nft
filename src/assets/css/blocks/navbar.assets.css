@@ -185,10 +185,16 @@
 
 .market-button
 { 
-  border: 1px solid #fff!important;
-  border-radius: 10px!important;
+  align-content: center;
+  align-items: center;
+  display: flex;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
+  justify-content: center;
+  background: #000;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  flex-direction: column;
   height: 40px;
   width: 50%;
 }

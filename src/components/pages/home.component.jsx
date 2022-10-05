@@ -30,14 +30,28 @@ class Home extends React.Component
         startLoading: this.props.startLoading,
         endLoading: this.props.endLoading,
         width: window.innerWidth,
+        isMobile: false
       };
-
+      this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this)
   }
 
 
-  UNSAFE_componentWillMount() { window.addEventListener('resize', this.handleWindowSizeChange); }
+  UNSAFE_componentWillMount() 
+  { 
+    window.addEventListener('resize', this.handleWindowSizeChange); 
+    this.state.width = document.documentElement.clientWidth
+    if(this.state.width <= 1500) this.state.isMobile = true
+    else this.state.isMobile = false
+    this.forceUpdate()
+  }
   componentWillUnmount() { window.removeEventListener('resize', this.handleWindowSizeChange); }
-  handleWindowSizeChange = () => { this.state.width = window.innerWidth };
+  handleWindowSizeChange(event) 
+  { 
+    this.state.width = document.documentElement.clientWidth
+    if(this.state.width <= 1500) this.state.isMobile = true
+    else this.state.isMobile = false
+    this.forceUpdate()
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) 
   {
@@ -53,12 +67,11 @@ class Home extends React.Component
 
   render()
   {
-    const isMobile = this.state.width <= 1500;
     return(
       <div className="home">
 
-        { isMobile != true ? <NavbarPresale/> : <NavbarPresaleMobile/> }
-        { isMobile != true && <LeftbarPresale /> }
+        { this.state.isMobile != true ? <NavbarPresale/> : <NavbarPresaleMobile/> }
+        { this.state.isMobile != true && <LeftbarPresale /> }
         <HomeBlock />
         {
           this.state.address === "" &&
