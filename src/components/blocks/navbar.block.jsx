@@ -9,11 +9,9 @@ import Web3Modal from 'web3modal'
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import network from 'contracts/network.contracts.js'
 import ContractHelper from "helpers/contract.helper"
-import Address from 'contracts/address.contracts.json'
 import Language from 'assets/data/language.json'
 import LoadingHelper from 'helpers/loadingData.helpers.js'
 import { ethers } from 'ethers'
-import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { LoginActions } from 'store/actions/login.actions.js'
 import { DashboardActions } from 'store/actions/dashboard.actions.js'
@@ -22,6 +20,7 @@ const MapStateToProps = (state) => {
   return { 
     address: state.login.address,
     language: state.login.language,
+    activateListener: state.login.activateListener,
   }; 
 };
 
@@ -46,6 +45,8 @@ class Navbar extends React.Component
         language: this.props.language,
         address: this.props.address,
         interval: null,
+        listening : false,
+        activateListener: this.props.activateListener,
       }
 
       this.handleChange = this.handleChange.bind(this)
@@ -61,8 +62,14 @@ class Navbar extends React.Component
       { 
         this.state.isLoggedIn = true 
         const contractHelper = new ContractHelper()
-        let provider = await contractHelper.getProvider()
-        
+        const loadingHelper = new LoadingHelper()
+
+        const {instance, provider} = await contractHelper.getInstance()
+        document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
+        if(this.state.listening !== true) this.addListeners(instance, provider)
+
+        await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
+
         if(this.state.interval == null) this.state.interval = setInterval(async () => 
         {
           let data =
@@ -84,16 +91,23 @@ class Navbar extends React.Component
       this.state.interval = null
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) 
+  async componentDidUpdate(prevProps, prevState, snapshot) 
   {
-      for(const [key, value] of Object.entries(this.state))
-      {
-          if (prevProps[key] !== this.props[key])
-          {  
-            this.state[key] = this.props[key]
-            this.forceUpdate()
-          }
+    for(const [key, value] of Object.entries(this.state))
+    {
+      if (prevProps[key] !== this.props[key])
+      {  
+        this.state[key] = this.props[key]
+        if(key === "activateListener" && this.state[key] === true)
+        {
+          let contractHelper = new ContractHelper()
+          const {instance, provider} = await contractHelper.getInstance()
+          document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
+          if(this.state.listening !== true) this.addListeners(instance, provider)
+        }
+        this.forceUpdate()
       }
+    }
   }
 
 
@@ -102,7 +116,6 @@ class Navbar extends React.Component
     let target = event.target
     if(target.id == "french") this.props.loginAction({language: "fr", action: "language"})
     else if(target.id == "english") this.props.loginAction({language: "en", action: "language"})
-    else if(target.id == "default") this.props.loginAction({language: "en", action: "language"})
   }
 
   handleChangeLink(event)
@@ -136,6 +149,8 @@ class Navbar extends React.Component
           const loadingHelper = new LoadingHelper()
 
           await loadingHelper.loadAllContractFunction(await newProvider.getSigner().getAddress(), newProvider, this.props)
+          
+          if(this.state.listening !== true) this.addListeners(instance, newProvider)
 
           if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
@@ -158,6 +173,33 @@ class Navbar extends React.Component
       else window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
   }
 
+  async addListeners(instance, provider) 
+  {
+    this.state.listening = true
+    instance.on('accountsChanged', async (accounts) => 
+    {
+      if(this.state.address )
+      {
+        let account = accounts[0] !== null && accounts[0] !== undefined ? accounts[0] : ""
+        let loadingHelper = new LoadingHelper()
+        this.props.loginAction({address: account, action: 'address'})
+        await this.props.dashboardAction({data : {}, action: "reset"})
+        if(account != "")
+        {
+          this.props.dashboardAction({loading : {}, action: "start-loading"})
+          await loadingHelper.loadAllContractFunction(accounts[0], provider, this.props)
+        }
+      }
+    })
+    
+    instance.on("disconnect",() => 
+    {
+      instance.close();
+      instance.clearCachedProvider();
+      this.props.loginAction({address: "", action: 'address'})
+    });
+  }
+
   render()
     {
       
@@ -172,9 +214,7 @@ class Navbar extends React.Component
 
                 
                 <form className="navbar-select" tabIndex="1" onChange={this.handleChange}>
-                  <input name="language-select" className="navbar-input" type="radio" id="default" defaultChecked/>
-                  <label htmlFor="default" className="navbar-option">{ Language[this.state.language].navbar.selectLanguage.default }</label>
-                  <input name="language-select" className="navbar-input" type="radio" id="english"/>
+                  <input name="language-select" className="navbar-input" type="radio" id="english" defaultChecked/>
                   <label htmlFor="english" className="navbar-option">English</label>
                   <input name="language-select" className="navbar-input" type="radio" id="french"/>
                   <label htmlFor="french" className="navbar-option">French</label>
@@ -202,7 +242,6 @@ class Navbar extends React.Component
 
             <div className="navbar-button flex row">
               <div className="navbar-button-core flex row">
-                <button className="button market-button flex row center"> <p className='navbar-address no-margin no-padding'>{ Language[this.state.language].navbar.buyButton }</p> </button>
                 {
                   this.state.address !== "" 
                   ?<div className="navbar-address-core flex row center"><p className='navbar-address'>{ this.state.address.substr(0, 6) + '...' +  this.state.address.substr( this.state.address.length - 6,  this.state.address.length)  }</p></div>

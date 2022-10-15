@@ -194,6 +194,10 @@ class BadgesPopup extends React.Component
                                 <button className="button shop-popup-max" onClick={() => this.addBadges()}>+</button>
                             </div>
 
+                            <div className="shop-popup-balance">
+                                <p className="shop-popup-text-title">My balance : { this.state.erc20Selected === "token" ?`${this.state.balanceToken} $CREST` : this.state.erc20Selected === "stable" && `${this.state.balanceStable} $BUSD` }</p>
+                            </div>
+
                             <div className="shop-popup-info-core flex row">
 
                                 <div className="shop-popup-info-title flex column">
@@ -207,15 +211,17 @@ class BadgesPopup extends React.Component
                                 <div className="shop-popup-info-desc flex column">
                                     <p className="shop-popup-text-desc">
                                         {
-                                            this.state.isWhitelist 
-                                            ? contractHelper.getNb(this.state.badges[this.state.badgesIndex].priceWhitelist, 2)
-                                            : contractHelper.getNb(this.state.badges[this.state.badgesIndex].pricePublic, 2)
-                                        }{'\u00A0'}$CREST{'\u00A0'}/{'\u00A0'}
-                                        {
-                                            this.state.isWhitelist 
-                                            ? contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10, 2)
-                                            : contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10, 2)
-                                        }{'\u00A0'}$USDC
+                                            this.state.erc20Selected === "token"
+                                            ?(
+                                                this.state.isWhitelist 
+                                                ? `${contractHelper.getNb(this.state.badges[this.state.badgesIndex].priceWhitelist * this.state.buyNbr, 2)} $CREST`
+                                                : `${contractHelper.getNb(this.state.badges[this.state.badgesIndex].pricePublic * this.state.buyNbr, 2)} $CREST` 
+                                            ): this.state.erc20Selected === "stable" && (
+                                                this.state.isWhitelist 
+                                                ? `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10 * this.state.buyNbr, 2)} $BUSD`
+                                                : `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10 * this.state.buyNbr, 2)} $BUSD`
+                                            )
+                                        }
                                     </p>
                                     <p className="shop-popup-text-desc">365 {Language[this.state.language].buyPopup.lifetimeValue}</p>
                                     <p className="shop-popup-text-desc">{contractHelper.getNb(this.state.badges[this.state.badgesIndex].rewardAmount, 2)} $CREST</p>
@@ -230,7 +236,7 @@ class BadgesPopup extends React.Component
                                     <input name="popup-shop" className="shop-popup-select-input" type="radio" id="token" defaultChecked/>
                                     <label htmlFor="token" className="shop-popup-select-option">CREST</label>
                                     <input name="popup-shop" className="shop-popup-select-input" type="radio" id="stable"/>
-                                    <label htmlFor="stable" className="shop-popup-select-option">USDC</label>
+                                    <label htmlFor="stable" className="shop-popup-select-option">BUSD</label>
                                 </form>
 
                                 {

@@ -1,5 +1,54 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = 
+{
+  startLoading: false,
+  endLoading: false,
+  loading: 0,
+  loadingMax: 13,
+  isWhitelist: false,
+  ruby: 
+  {
+    priceWhitelist: null,
+    pricePublic: null,
+    maxUser: null,
+    purchased: null,
+    rewardAmount: null,
+    priceStandard: null,
+    max: null,
+    totalSupply: null,
+    balanceUser: null
+  },
+  amethyst: 
+  {
+    priceWhitelist: null,
+    pricePublic: null,
+    maxUser: null,
+    purchased: null,
+    rewardAmount: null,
+    priceStandard: null,
+    max: null,
+    totalSupply: null,
+    balanceUser: null
+  },
+  amber: 
+  {
+    priceWhitelist: null,
+    pricePublic: null,
+    maxUser: null,
+    purchased: null,
+    rewardAmount: null,
+    priceStandard: null,
+    max: null,
+    totalSupply: null,
+    balanceUser: null
+  },
+  balanceToken: null,
+  balanceStable: null,
+  allowanceToken: null,
+  allowanceStable: null
+}
+
 export const dashboardSlice = createSlice(
 {
   name: 'dashboard',
@@ -83,17 +132,21 @@ export const dashboardSlice = createSlice(
 
         case 'start-loading': 
           state.startLoading = true
+          state.loading = 0
           break
 
         case 'end-loading': 
-          state.loading = 0
           state.startLoading = false
           state.endLoading = false
           break
 
+        case 'reset': 
+          for(const [key, value] of Object.entries(initialState)) state[key] = value
+          break
+
         default:
           console.log(`wrong action !`)
-          break;            
+          break;           
       }
     },
   },

@@ -56,30 +56,23 @@ class Shop extends React.Component
       allowanceToken: this.props.allowanceToken,
       allowanceStable: this.props.allowanceStable,
       width: window.innerWidth,
-      isMobile: false,
+      isMobile: props.isMobile,
+      timeCounter: null,
+      timeEvent: false,
     };
-    this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this)
   }
 
-  UNSAFE_componentWillMount() 
-  { 
-    window.addEventListener('resize', this.handleWindowSizeChange); 
-    this.state.width = document.documentElement.clientWidth
-    if(this.state.width <= 1500) this.state.isMobile = true
-    else this.state.isMobile = false
-    this.forceUpdate()
-  }
+  UNSAFE_componentWillMount() { this.counter() }
   componentWillUnmount() { window.removeEventListener('resize', this.handleWindowSizeChange); }
-  handleWindowSizeChange(event) 
-  { 
-    this.state.width = document.documentElement.clientWidth
-    if(this.state.width <= 1500) this.state.isMobile = true
-    else this.state.isMobile = false
-    this.forceUpdate()
-  }
 
   componentDidMount()
   {
+    let targetDateTime = document.getElementById("time-counter")
+    var observer = new MutationObserver((mutations) => { this.refreshTimer() });
+    var config = { attributes: true, childList: true, characterData: true, attributeOldValue : true, subtree : true, attributeOldValue : true, characterDataOldValue : true };
+    observer.observe(targetDateTime, config);
+    this.refreshTimer()
+
     document.getElementById('amber-global-bar').style.setProperty('--widthMin',`0`)
     document.getElementById('amber-global-bar').style.setProperty('--widthMax',`${(parseFloat(this.state.amber.totalSupply) / parseFloat(this.state.amber.max) * 100)}%`)
     document.getElementById('amber-personnal-bar').style.setProperty('--widthMin',`0`)
@@ -152,8 +145,26 @@ class Shop extends React.Component
         }
         
       }
-
     }
+  }
+
+  refreshTimer()
+  {
+    this.state.timeEvent = true
+    setTimeout(this.counter.bind(this), 1000);
+  }
+
+  counter()
+  {
+    let currentDate = Date.now()
+    let targetDate = new Date("2022-11-06T00:00")
+    let dif = (targetDate-currentDate)/1000,
+    ss = Math.floor(dif % 60).toString().padStart(2,"0"),
+    ms = Math.floor(dif/60 % 60).toString().padStart(2,"0"),
+    hs = Math.floor(dif/3600 % 24).toString().padStart(2,"0"),
+    ds = Math.floor(dif/86400).toString().padStart(2,"0");
+    this.state.timeCounter = dif > 0 ? `${ds} days ${hs}:${ms}:${ss}` : "Sorry, presale is over!";
+    this.forceUpdate()
   }
 
 
@@ -185,7 +196,7 @@ class Shop extends React.Component
             <div className='home-head-time-core home-head-timer flex column center'>
               { this.state.isMobile != true && <h1 className='home-head-time-title no-margin no-padding'>{Language[this.state.language].home.headTimeTitle}</h1> }
               { this.state.isMobile != true && <h2 className='home-head-time-desc no-margin no-padding'>{Language[this.state.language].home.headTimeDesc}</h2> }
-              <h1 className='home-head-time-nbr home-head-title-timer no-margin no-padding'>3:13:40</h1>
+              <h1 className='home-head-time-nbr home-head-title-timer no-margin no-padding' id="time-counter">{this.state.timeCounter}</h1>
             </div>
 
 

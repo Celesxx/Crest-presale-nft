@@ -7,9 +7,8 @@
 
 .popup-content
 {
-    height: 50%;
-    /* width: 40%; */
-    aspect-ratio: 9/6;
+    height: 70%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,8 +86,8 @@
 
 .shop-popup-min, .shop-popup-max
 {
-    width: 13%;
-    height: 70%;
+    width: 40px;
+    height: 40px;
     border: 0;
     border-right: 1px solid rgb(0, 133, 255);
     border-left: 1px solid rgba(255, 26, 136, 0.8);

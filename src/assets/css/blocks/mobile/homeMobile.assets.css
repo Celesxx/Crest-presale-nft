@@ -1,4 +1,4 @@
-@media only screen and (max-width: 660px) 
+@media only screen and (max-width: 660px), only screen and (max-width: 660px) and (max-height: 660px) and (orientation: landscape) 
 {
     .home { overflow-y: scroll; height: 200vh; }
     .home-base 
@@ -35,9 +35,10 @@
         font-size: 14px;
     }
     .home-head-start, .home-head-end { font-size: 12px; }
-    .home-head-timer { height: 20%; order: 3; }
-    .home-head-title-timer { font-size: 32px; }
+    .home-head-timer { height: 20%; order: 3; width: 80%;}
+    .home-head-title-timer { font-size: 20px; }
     .home-head-wallet-desc { font-size: 12px;}
+    .home-head-time-nbr, .home-head-badges-nbr, .home-head-wallet-nbr { font-size: 20px; }
     .home-content-core
     {
         justify-content: center;
@@ -81,7 +82,7 @@
         gap: 5px;
     }
 }
-@media only screen and (max-width: 1500px) and (min-width: 661px) 
+@media only screen and (max-width: 1500px) and (min-width: 661px), only screen  and (max-width: 1500px) and (min-width: 661px) and (max-height: 1500px) and (min-height: 661px) and (orientation: landscape)
 {
     .home { overflow-y: scroll; height: 150vh; }
     .home-base 

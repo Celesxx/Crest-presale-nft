@@ -6,7 +6,7 @@
             "headTitleP1": "Presale",
             "headTitleP2": "Badges",
             "headDiscount": "Discount",
-            "headTimeTitle": "Remaining time",
+            "headTimeTitle": "Time",
             "headTimeDesc": "Before end of presale",
             "headWalletTitle": "My badges",
             "headWalletDesc": "balance",
@@ -36,8 +36,8 @@
             "cost": "Cost",
             "remaining": "Remaining",
             "lifetimeValue": "days",
-            "approve": "approve",
-            "buy": "buy"
+            "approve": "Approve",
+            "buy": "Buy"
         }
        
     },

@@ -17,7 +17,7 @@ class LoadingHelper
     {
 
         let contractHelper = new ContractHelper()
-        const presaleData = await contractHelper.getDatas(provider, 6)
+        const presaleData = await contractHelper.getDatas(provider, 18)
         const purchaseData = await contractHelper.getPurchased(provider, address)
 
         let data = 
@@ -34,9 +34,9 @@ class LoadingHelper
 
 
         data.isWhitelist = await contractHelper.getIsWhitelist(provider)
-        data.balanceToken= await contractHelper.getBalanceOf(provider, Address.token, address, 6)
+        data.balanceToken= await contractHelper.getBalanceOf(provider, Address.token, address, 18)
         props.dashboardAction({loading : {}, action: "loading"})
-        data.balanceStable= await contractHelper.getBalanceOf(provider, Address.stable, address, 6)
+        data.balanceStable= await contractHelper.getBalanceOf(provider, Address.stable, address, 18)
         props.dashboardAction({loading : {}, action: "loading"})
         data.allowanceToken= await contractHelper.getAllowance(provider, Address.token, address)
         props.dashboardAction({loading : {}, action: "loading"})
@@ -48,8 +48,8 @@ class LoadingHelper
         data.amber.maxUser = presaleData.maxUser[0]
         data.amber.purchased = purchaseData[0]
         props.dashboardAction({loading : {}, action: "loading"})
-        data.amber.rewardAmount= await contractHelper.getRewardAmount(provider, 0, 6)
-        data.amber.priceStandard= await contractHelper.getPriceStandard(provider, 0 , 6)
+        data.amber.rewardAmount= await contractHelper.getRewardAmount(provider, 0, 18)
+        data.amber.priceStandard= await contractHelper.getPriceStandard(provider, 0 , 18)
         data.amber.max= await contractHelper.getMax(provider, 0)
         props.dashboardAction({loading : {}, action: "loading"})
         data.amber.totalSupply= await contractHelper.getTotalSupply(provider, 0)
@@ -61,8 +61,8 @@ class LoadingHelper
         data.amethyst.maxUser= presaleData.maxUser[1]
         data.amethyst.purchased= purchaseData[1]
         props.dashboardAction({loading : {}, action: "loading"})
-        data.amethyst.rewardAmount= await contractHelper.getRewardAmount(provider, 1, 6)
-        data.amethyst.priceStandard= await contractHelper.getPriceStandard(provider, 1 , 6)
+        data.amethyst.rewardAmount= await contractHelper.getRewardAmount(provider, 1, 18)
+        data.amethyst.priceStandard= await contractHelper.getPriceStandard(provider, 1 , 18)
         data.amethyst.max= await contractHelper.getMax(provider, 1)
         props.dashboardAction({loading : {}, action: "loading"})
         data.amethyst.totalSupply= await contractHelper.getTotalSupply(provider, 1)
@@ -74,8 +74,8 @@ class LoadingHelper
         data.ruby.maxUser= presaleData.maxUser[2]
         data.ruby.purchased= purchaseData[2]
         props.dashboardAction({loading : {}, action: "loading"})
-        data.ruby.rewardAmount= await contractHelper.getRewardAmount(provider, 2, 6)
-        data.ruby.priceStandard= await contractHelper.getPriceStandard(provider, 2 , 6)
+        data.ruby.rewardAmount= await contractHelper.getRewardAmount(provider, 2, 18)
+        data.ruby.priceStandard= await contractHelper.getPriceStandard(provider, 2 , 18)
         data.ruby.max= await contractHelper.getMax(provider, 2)
         props.dashboardAction({loading : {}, action: "loading"})
         data.ruby.totalSupply= await contractHelper.getTotalSupply(provider, 2)
