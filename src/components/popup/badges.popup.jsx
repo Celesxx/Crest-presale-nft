@@ -58,7 +58,7 @@ class BadgesPopup extends React.Component
             balanceStable: this.props.balanceStable,
             allowanceToken: this.props.allowanceToken,
             allowanceStable: this.props.allowanceStable,
-            erc20Selected: "token",
+            erc20Selected: "stable",
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -120,7 +120,12 @@ class BadgesPopup extends React.Component
         if(this.state.erc20Selected === "token") await contractHelper.setPurchase(provider, Address.token, this.state.badgesIndex, this.state.buyNbr)
         else if(this.state.erc20Selected === "stable") await contractHelper.setPurchase(provider, Address.stable, this.state.badgesIndex, this.state.buyNbr)
         else console.log("An error append to the buyBadges function")
-        let data = {}
+        let data = 
+        {
+            balanceToken: await contractHelper.getBalanceOf(provider, Address.token, address, 18),
+            balanceStable: await contractHelper.getBalanceOf(provider, Address.stable, address, 18)
+        }
+
         switch(this.state.badgesIndex)
         {
             case 0:
@@ -166,9 +171,9 @@ class BadgesPopup extends React.Component
                     Buy {'\u00A0'}
                     {
                         this.state.isWhitelist 
-                        ? contractHelper.getNb(this.state.badges[this.state.badgesIndex].priceWhitelist, 2)
-                        : contractHelper.getNb(this.state.badges[this.state.badgesIndex].pricePublic, 2)
-                    }{'\u00A0'} $CREST
+                        ? contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10, 2)
+                        : contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10, 2)
+                    }{'\u00A0'} $BUSD
                 </button>
             } modal nested>
             {
@@ -195,17 +200,23 @@ class BadgesPopup extends React.Component
                             </div>
 
                             <div className="shop-popup-balance">
-                                <p className="shop-popup-text-title">My balance : { this.state.erc20Selected === "token" ?`${this.state.balanceToken} $CREST` : this.state.erc20Selected === "stable" && `${this.state.balanceStable} $BUSD` }</p>
+                                <p className="shop-popup-text-title">My balance: {'\u00A0'}
+                                { 
+                                    this.state.erc20Selected === "token" 
+                                    ?`${this.state.balanceToken !== null ? contractHelper.getNb(this.state.balanceToken, 3) : this.state.balanceToken} $CREST` 
+                                    : this.state.erc20Selected === "stable" && `${this.state.balanceStable !== null ? contractHelper.getNb(this.state.balanceStable, 3) : this.state.balanceStable} $BUSD` 
+                                }
+                                </p>
                             </div>
 
                             <div className="shop-popup-info-core flex row">
 
                                 <div className="shop-popup-info-title flex column">
                                     <p className="shop-popup-text-title">{Language[this.state.language].buyPopup.cost}</p>
+                                    <p className="shop-popup-text-title">{Language[this.state.language].buyPopup.remaining}</p>
                                     <p className="shop-popup-text-title">Lifetime</p>
                                     <p className="shop-popup-text-title">Daily Rewards</p>
                                     <p className="shop-popup-text-title">Daily ROI</p>
-                                    <p className="shop-popup-text-title">{Language[this.state.language].buyPopup.remaining}</p>
                                 </div>
 
                                 <div className="shop-popup-info-desc flex column">
@@ -223,19 +234,19 @@ class BadgesPopup extends React.Component
                                             )
                                         }
                                     </p>
+                                    <p className="shop-popup-text-desc"> {contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].max) - parseFloat(this.state.badges[this.state.badgesIndex].totalSupply), 0)} </p>
                                     <p className="shop-popup-text-desc">365 {Language[this.state.language].buyPopup.lifetimeValue}</p>
                                     <p className="shop-popup-text-desc">{contractHelper.getNb(this.state.badges[this.state.badgesIndex].rewardAmount, 2)} $CREST</p>
                                     <p className="shop-popup-text-desc"> {contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].rewardAmount) / parseFloat(this.state.badges[this.state.badgesIndex].priceStandard) * 100, 2)}% </p>
-                                    <p className="shop-popup-text-desc"> {contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].max) - parseFloat(this.state.badges[this.state.badgesIndex].totalSupply), 0)} </p>
                                 </div>
 
                             </div>
 
                             <div className="shop-popup-button-core flex row">
                                 <form className="shop-popup-select flex center" tabIndex="1" onChange={this.handleChange}>
-                                    <input name="popup-shop" className="shop-popup-select-input" type="radio" id="token" defaultChecked/>
+                                    <input name="popup-shop" className="shop-popup-select-input" type="radio" id="token"/>
                                     <label htmlFor="token" className="shop-popup-select-option">CREST</label>
-                                    <input name="popup-shop" className="shop-popup-select-input" type="radio" id="stable"/>
+                                    <input name="popup-shop" className="shop-popup-select-input" type="radio" id="stable" defaultChecked/>
                                     <label htmlFor="stable" className="shop-popup-select-option">BUSD</label>
                                 </form>
 
