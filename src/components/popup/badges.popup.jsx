@@ -122,8 +122,8 @@ class BadgesPopup extends React.Component
         else console.log("An error append to the buyBadges function")
         let data = 
         {
-            balanceToken: await contractHelper.getBalanceOf(provider, Address.token, address, 18),
-            balanceStable: await contractHelper.getBalanceOf(provider, Address.stable, address, 18)
+            balanceToken: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 18),
+            balanceStable: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 18)
         }
 
         switch(this.state.badgesIndex)

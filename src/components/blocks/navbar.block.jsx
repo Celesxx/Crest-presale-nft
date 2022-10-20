@@ -66,20 +66,30 @@ class Navbar extends React.Component
 
         const {instance, provider} = await contractHelper.getInstance()
         document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
-        if(this.state.listening !== true) this.addListeners(instance, provider)
 
-        await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
 
-        if(this.state.interval == null) this.state.interval = setInterval(async () => 
+        const chainId = (await provider.getNetwork()).chainId
+        if (chainId == network.chainId) 
         {
-          let data =
+          if(this.state.listening !== true) this.addListeners(instance, provider)
+          await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
+          if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
-            amber: { totalSupply: await contractHelper.getTotalSupply(provider, 0) },
-            amethyst: { totalSupply: await contractHelper.getTotalSupply(provider, 1) },
-            ruby: { totalSupply: await contractHelper.getTotalSupply(provider, 2) }
-          }
-          this.props.dashboardAction({data: data, action: "save-data"})
-        }, 5000)
+            let data =
+            {
+              amber: { totalSupply: await contractHelper.getTotalSupply(provider, 0) },
+              amethyst: { totalSupply: await contractHelper.getTotalSupply(provider, 1) },
+              ruby: { totalSupply: await contractHelper.getTotalSupply(provider, 2) }
+            }
+            this.props.dashboardAction({data: data, action: "save-data"})
+          }, 5000)
+
+        }else
+        {
+          this.props.loginAction({address: "", action: 'address'})
+          Notiflix.Notify.warning(
+          "Required Network - " + network.chainName, { timeout: 1500, width: '500px', position: 'center-top', fontSize: '22px' });
+        }
 
       }
     }

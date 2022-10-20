@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @media only screen and (max-width: 660px), only screen and (max-width: 660px) and (max-height: 660px) and (orientation: landscape) 
 {
     .popup-content
@@ -9,7 +16,10 @@
     .shop-popup-base
     {
         height: 90%;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }   
 
     .shop-popup-close { right: 10%; }
@@ -35,15 +45,17 @@
     .shop-popup-info-title, .shop-popup-info-desc
     {
         font-size: 12px;
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         gap: 5px;
     }
     .shop-popup-text-title, .shop-popup-text-desc { margin: 0; font-size: 12px; }
-    .shop-popup-button-core { align-items: center; justify-content: space-around; }
+    .shop-popup-button-core { -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-pack: distribute; justify-content: space-around; }
     .shop-popup-button, .shop-popup-select-option { font-size: 10px;}
     .shop-popup-button, .shop-popup-select { border-radius: 14px; }
 }
-@media only screen and (max-width: 1500px) and (min-width: 661px), only screen  and (max-width: 1500px) and (min-width: 661px) and (max-height: 1500px) and (min-height: 661px) and (orientation: landscape) 
+@media only screen and (max-width: 1200px) and (min-width: 661px), only screen  and (max-width: 1200px) and (min-width: 661px) and (max-height: 1200px) and (min-height: 661px) and (orientation: landscape) 
 {
     .popup-content
     {
@@ -60,12 +72,14 @@
     .shop-popup-info-core { height: 60%; }
     .shop-popup-info-title, .shop-popup-info-desc   
     {
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         gap: 15px;
         font-size: 14px;
     }
     .shop-popup-text-title, .shop-popup-text-desc { margin: 0; font-size: 14px;}
-    .shop-popup-button-core { align-items: center; }
+    .shop-popup-button-core { -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
     .shop-popup-button, .shop-popup-select-option { font-size: 12px;}
     .shop-popup-button, .shop-popup-select { border-radius: 14px; }
 }
