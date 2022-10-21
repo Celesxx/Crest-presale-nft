@@ -65,7 +65,7 @@ class Navbar extends React.Component
         document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
         
         const chainId = (await provider.getNetwork()).chainId
-        if (chainId == network.chainId) 
+        if (chainId == network.chainId && this.props.address === await provider.getSigner().getAddress()) 
         {
           if(this.state.listening !== true) this.addListeners(instance, provider)
           await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
@@ -80,6 +80,25 @@ class Navbar extends React.Component
             this.props.dashboardAction({data: data, action: "save-data"})
           }, 5000)
 
+        }else if(chainId == network.chainId && this.props.address !== await provider.getSigner().getAddress())
+        {
+          let loadingHelper = new LoadingHelper()
+          this.props.loginAction({address: await provider.getSigner().getAddress(), action: 'address'})
+          await this.props.dashboardAction({data : {}, action: "reset"})
+          this.props.dashboardAction({loading : {}, action: "start-loading"})
+          await loadingHelper.loadAllContractFunction(this.props.address, provider, this.props)
+          if(this.state.listening !== true) this.addListeners(instance, provider)
+          if(this.state.interval == null) this.state.interval = setInterval(async () => 
+          {
+            let data =
+            {
+              amber: { totalSupply: await contractHelper.getTotalSupply(provider, 0) },
+              amethyst: { totalSupply: await contractHelper.getTotalSupply(provider, 1) },
+              ruby: { totalSupply: await contractHelper.getTotalSupply(provider, 2) }
+            }
+            this.props.dashboardAction({data: data, action: "save-data"})
+          }, 5000)
+        
         }else
         {
           this.props.loginAction({address: "", action: 'address'})
