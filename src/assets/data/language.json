@@ -19,7 +19,7 @@
             "selectDocs":
             {
                 "default": "Link",
-                "website": "Website",
+                "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
                 "doc": "Medium"
@@ -41,7 +41,6 @@
         }
        
     },
-    
 
     "fr":
     {
@@ -63,7 +62,7 @@
             "selectDocs":
             {
                 "default": "Lien",
-                "website": "Website",
+                "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
                 "doc": "Medium"
@@ -82,6 +81,90 @@
             "lifetimeValue": "jours",
             "approve": "Approuver",
             "buy": "Acheter"
+        }
+    },
+
+    "sp":
+    {
+        "home":
+        {
+            "headTitleP1": "Preventa",
+            "headTitleP2": "Insignias",
+            "headDiscount": "Reducción",
+            "headTimeTitle": "Tiempo restante",
+            "headTimeDesc": "Antes del final de la preventa",
+            "headWalletTitle": "mis insignias",
+            "headWalletDesc": "Balanza",
+            "barGlobalTitle": "Global",
+            "barPersonnalTitle": "Usuario"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "Link",
+                "website": "Docs",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "lengua"
+            },
+            "buyButton": "Comprar/Vender $CREST"
+        },
+
+        "buyPopup":
+        {
+            "cost": "Precio",
+            "remaining": "Restante",
+            "lifetimeValue": "Días",
+            "approve": "Aprobar",
+            "buy": "Comprar"
+        }
+    },
+
+    "jp":
+    {
+        "home":
+        {
+            "headTitleP1": "プレセール",
+            "headTitleP2": "バッジ",
+            "headDiscount": "割引",
+            "headTimeTitle": "残り時間",
+            "headTimeDesc": "プレセール終了前",
+            "headWalletTitle": "マイバッジ",
+            "headWalletDesc": "残高",
+            "barGlobalTitle": "グローバル",
+            "barPersonnalTitle": "ユーザー"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "リンク",
+                "website": "Docs",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "言語"
+            },
+            "buyButton": "買い/売り $CREST"
+        },
+
+        "buyPopup":
+        {
+            "cost": "価格",
+            "remaining": "残り",
+            "lifetimeValue": "日",
+            "approve": "承認",
+            "buy": "買う"
         }
     }
 }
