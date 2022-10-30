@@ -78,8 +78,8 @@ class Home extends React.Component
       const home = document.querySelector('.home');
       if (window.matchMedia("(orientation: landscape)").matches) 
       {
-        root.style["height"] = "150vw"
-        home.style["height"] = "150vw"
+        root.style["height"] = "175vw"
+        home.style["height"] = "175vw"
       }
       else 
       {

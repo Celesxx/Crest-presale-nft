@@ -7,8 +7,8 @@
             "headTitleP2": "Badges",
             "headDiscount": "Discount",
             "headTimeTitle": "Time",
-            "headTimeDesc": "Before end of presale",
-            "headWalletTitle": "My badges",
+            "headTimeDesc": "Until Presale Ends",
+            "headWalletTitle": "My Total Badges",
             "headWalletDesc": "balance",
             "barGlobalTitle": "Global",
             "barPersonnalTitle": "User"
@@ -18,7 +18,7 @@
         {
             "selectDocs":
             {
-                "default": "Link",
+                "default": "Links",
                 "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
@@ -103,7 +103,7 @@
         {
             "selectDocs":
             {
-                "default": "Link",
+                "default": "Links",
                 "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
