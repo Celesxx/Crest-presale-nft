@@ -122,8 +122,8 @@ class BadgesPopup extends React.Component
         else console.log("An error append to the buyBadges function")
         let data = 
         {
-            balanceToken: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 18),
-            balanceStable: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 18)
+            balanceToken: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 6),
+            balanceStable: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 6)
         }
 
         switch(this.state.badgesIndex)
@@ -173,7 +173,7 @@ class BadgesPopup extends React.Component
                         this.state.isWhitelist 
                         ? contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10, 2)
                         : contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10, 2)
-                    }{'\u00A0'} $BUSD
+                    }{'\u00A0'} $USDC
                 </button>
             } modal nested>
             {
@@ -204,7 +204,7 @@ class BadgesPopup extends React.Component
                                 { 
                                     this.state.erc20Selected === "token" 
                                     ?`${this.state.balanceToken !== null ? contractHelper.getNb(this.state.balanceToken, 3) : this.state.balanceToken} $CREST` 
-                                    : this.state.erc20Selected === "stable" && `${this.state.balanceStable !== null ? contractHelper.getNb(this.state.balanceStable, 3) : this.state.balanceStable} $BUSD` 
+                                    : this.state.erc20Selected === "stable" && `${this.state.balanceStable !== null ? contractHelper.getNb(this.state.balanceStable, 3) : this.state.balanceStable} $USDC` 
                                 }
                                 </p>
                             </div>
@@ -229,8 +229,8 @@ class BadgesPopup extends React.Component
                                                 : `${contractHelper.getNb(this.state.badges[this.state.badgesIndex].pricePublic * this.state.buyNbr, 2)} $CREST` 
                                             ): this.state.erc20Selected === "stable" && (
                                                 this.state.isWhitelist 
-                                                ? `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10 * this.state.buyNbr, 2)} $BUSD`
-                                                : `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10 * this.state.buyNbr, 2)} $BUSD`
+                                                ? `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].priceWhitelist) * 10 * this.state.buyNbr, 2)} $USDC`
+                                                : `${contractHelper.getNb(parseFloat(this.state.badges[this.state.badgesIndex].pricePublic) * 10 * this.state.buyNbr, 2)} $USDC`
                                             )
                                         }
                                     </p>
@@ -247,7 +247,7 @@ class BadgesPopup extends React.Component
                                     <input name="popup-shop" className="shop-popup-select-input" type="radio" id="token"/>
                                     <label htmlFor="token" className="shop-popup-select-option">CREST</label>
                                     <input name="popup-shop" className="shop-popup-select-input" type="radio" id="stable" defaultChecked/>
-                                    <label htmlFor="stable" className="shop-popup-select-option">BUSD</label>
+                                    <label htmlFor="stable" className="shop-popup-select-option">USDC</label>
                                 </form>
 
                                 {
